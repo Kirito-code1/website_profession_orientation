@@ -34,7 +34,7 @@ export default function RootLayout({
 
         <Navigation />
         {/* 📦 КОНТЕНТ */}
-        <main className="flex-grow pt-20">{children}</main>
+        <main className="flex-1 pt-20 flex flex-col">{children}</main>
 
         {/* 🦶 ФУТЕР */}
         <footer className="bg-white border-t border-slate-200 py-12 mt-auto">
