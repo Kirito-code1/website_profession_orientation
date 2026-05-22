@@ -100,7 +100,7 @@ const Test = () => {
 
           {/* BOTTOM */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/question-test">
+            <Link href="/questionnaire">
               <button className="cursor-pointer w-full sm:w-[186px] h-[56px] rounded-[12px] bg-[#3B82F6] text-white text-base font-semibold">
                 Пройти тест
               </button>
