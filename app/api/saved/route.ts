@@ -1,4 +1,13 @@
 import { supabase } from "@/lib/supabase";
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  return NextResponse.json({ message: "Saved items API" });
+}
+
+export async function POST() {
+  return NextResponse.json({ message: "Not implemented" }, { status: 501 });
+}
 
 export async function addSavedFaculty(UserID: number, FacultyID: number) {
   const { data: faculty, error: facultyError } = await supabase
@@ -52,7 +61,6 @@ export async function addSavedFaculty(UserID: number, FacultyID: number) {
   };
 }
 
-
 export async function removeSavedFaculty(UserID: number, FacultyID: number) {
   const { data: existing } = await supabase
     .from("saved_faculties")
@@ -87,7 +95,10 @@ export async function removeSavedFaculty(UserID: number, FacultyID: number) {
   };
 }
 
-export async function removeSavedProffession(UserID: number, ProffessionID: number) {
+export async function removeSavedProffession(
+  UserID: number,
+  ProffessionID: number,
+) {
   const { data: existing } = await supabase
     .from("saved_proffession")
     .select("id")
@@ -120,7 +131,6 @@ export async function removeSavedProffession(UserID: number, ProffessionID: numb
     message: "Profession removed from saved",
   };
 }
-
 
 export async function clearAllSavedFaculties(UserID: number) {
   const { error } = await supabase
@@ -159,14 +169,17 @@ export async function clearAllSavedProffessions(UserID: number) {
     message: "All saved professions cleared",
   };
 }
-export async function addSavedProffession(UserID:number,ProffessionID: number,) {
+export async function addSavedProffession(
+  UserID: number,
+  ProffessionID: number,
+) {
   const { data: proffession, error: proffessionError } = await supabase
     .from("proffesion")
     .select("id")
     .eq("id", ProffessionID)
     .single();
 
-      if (proffessionError || !proffession) {
+  if (proffessionError || !proffession) {
     return {
       success: false,
       message: "Proffession does not exist",
@@ -179,13 +192,13 @@ export async function addSavedProffession(UserID:number,ProffessionID: number,) 
     .eq("faculty_id", ProffessionID)
     .single();
 
-      if (existing) {
+  if (existing) {
     return {
       success: false,
       message: "Already saved",
     };
   }
-   const { data, error } = await supabase
+  const { data, error } = await supabase
     .from("saved_proffession")
     .insert([
       {

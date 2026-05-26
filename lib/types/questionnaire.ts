@@ -1,13 +1,13 @@
 export interface Question {
-  id: number;
-  text: string;
+  question_id: number;
+  question_text: string;
   order: number;
 }
 
 export interface Answer {
-  id: number;
+  answer_id: number;
   question_id: number;
-  text: string;
+  answer_text: string;
   order: number;
 }
 

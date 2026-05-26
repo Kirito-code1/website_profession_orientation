@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
+import { AuthProvider } from "@/lib/auth-context";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["cyrillic", "latin"] });
+const  inter = Inter({ subsets: ["cyrillic", "latin"] });
 
 export const metadata: Metadata = {
   title: "ПрофВыбор — Выбор профессии и поступление в вуз",
@@ -30,12 +31,12 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-white text-slate-800 antialiased min-h-screen flex flex-col`}
       >
-        {/* 🌍 NAVBAR — полупрозрачный белый с чёткой границей */}
-
-        <Navigation />
-        {/* 📦 КОНТЕНТ */}
-        <main className="flex-1 pt-20 flex flex-col">{children}</main>
-
+        <AuthProvider>
+          {/* 🌍 NAVBAR — полупрозрачный белый с чёткой границей */}
+          <Navigation />
+          {/* 📦 КОНТЕНТ */}
+          <main className="flex-1 pt-20 flex flex-col">{children}</main>
+        </AuthProvider>
         {/* 🦶 ФУТЕР */}
         <footer className="bg-white border-t border-slate-200 py-12 mt-auto">
           <div className="max-w-7xl mx-auto px-6">
